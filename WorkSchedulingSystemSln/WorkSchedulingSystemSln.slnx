@@ -3,7 +3,7 @@
     <Project Path="WorkSchedulingSystem.API/WorkSchedulingSystem.API.csproj" Id="608929fb-23f6-48ec-8411-5e18ca3d8f87" />
     <Project Path="WorkSchedulingSystem.Application/WorkSchedulingSystem.Application.csproj" Id="82e419f8-40e0-41c9-908f-c7e28b7cba74" />
     <Project Path="WorkSchedulingSystem.Domain/WorkSchedulingSystem.Domain.csproj" Id="01237a63-94aa-4b37-84ff-174198417211" />
-    <Project Path="WorkSchedulingSystem.Infrastrucutre/WorkSchedulingSystem.Infrastrucutre.csproj" Id="e330909c-56c3-4a04-8762-f6b1fa3ea701" />
+    <Project Path="WorkSchedulingSystem.Infrastrucutre/WorkSchedulingSystem.Infrastructure.csproj" Id="e330909c-56c3-4a04-8762-f6b1fa3ea701" />
   </Folder>
   <Folder Name="/test/" />
 </Solution>

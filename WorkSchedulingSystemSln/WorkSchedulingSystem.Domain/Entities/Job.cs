@@ -16,7 +16,7 @@ public class Job
         Id = Guid.NewGuid();
     }
 
-    public static Job Create(string title, string description, TimeSpan duration, DateTime scheduledDate, Guid assignedEmployeeId)
+    public static Job Create(string title, string description, TimeSpan duration, DateTime scheduledDate, Guid assignedUserId)
     {
         if (string.IsNullOrEmpty(title))
         {
@@ -39,7 +39,7 @@ public class Job
             Description = description,
             Duration = duration,
             ScheduledDate = scheduledDate,
-            AssignedEmployeeId = assignedEmployeeId
+            AssignedUserId = assignedUserId
         };
     }
 }
