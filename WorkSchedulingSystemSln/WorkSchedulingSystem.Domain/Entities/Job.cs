@@ -9,7 +9,7 @@ public class Job
     public string Description { get; private set; }
     public TimeSpan Duration { get; private set; }
     public DateTime ScheduledDate { get; private set; }
-    public Guid AssignedEmployeeId { get; private set; }
+    public Guid AssignedUserId { get; private set; }
 
     private Job()
     {
