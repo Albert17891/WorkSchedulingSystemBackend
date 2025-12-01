@@ -1,7 +1,7 @@
 ﻿using WorkSchedulingSystem.Domain.RepositoryContracts;
-using WorkSchedulingSystem.Infrastrucutre.DataContext;
+using WorkSchedulingSystem.Infrastrucuture.DataContext;
 
-namespace WorkSchedulingSystem.Infrastrucutre.Repositories;
+namespace WorkSchedulingSystem.Infrastrucuture.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {

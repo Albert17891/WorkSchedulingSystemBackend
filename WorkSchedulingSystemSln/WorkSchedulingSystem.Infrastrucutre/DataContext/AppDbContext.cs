@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WorkSchedulingSystem.Domain.Entities;
 
-namespace WorkSchedulingSystem.Infrastrucutre.DataContext;
+namespace WorkSchedulingSystem.Infrastrucuture.DataContext;
 
 public class AppDbContext : IdentityDbContext<User>
 {
