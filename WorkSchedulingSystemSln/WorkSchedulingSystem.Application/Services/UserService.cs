@@ -2,6 +2,7 @@
 using WorkSchedulingSystem.Application.Common;
 using WorkSchedulingSystem.Application.DTO.User;
 using WorkSchedulingSystem.Application.ServiceContracts;
+using WorkSchedulingSystem.Domain.Constants;
 using WorkSchedulingSystem.Domain.Entities;
 
 namespace WorkSchedulingSystem.Application.Services;
@@ -32,6 +33,8 @@ public class UserService : IUserService
         {
             return ApiResult<User>.Failure("User creation failed");
         }
+
+        await _userManager.AddToRoleAsync(user, Roles.Worker);
 
         return ApiResult<User>.Success(user);
     }
