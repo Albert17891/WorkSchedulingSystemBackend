@@ -5,18 +5,17 @@ namespace WorkSchedulingSystem.Domain.Entities;
 public class Job
 {
     public Guid Id { get; private set; }
+    public Guid ScheduleId { get; private set; }
     public string Title { get; private set; }
     public string Description { get; private set; }
     public TimeSpan Duration { get; private set; }
-    public DateTime ScheduledDate { get; private set; }
-    public Guid AssignedUserId { get; private set; }
 
     private Job()
     {
         Id = Guid.NewGuid();
     }
 
-    public static Job Create(string title, string description, TimeSpan duration, DateTime scheduledDate, Guid assignedUserId)
+    public static Job Create(string title, string description, TimeSpan duration)
     {
         if (string.IsNullOrEmpty(title))
         {
@@ -37,9 +36,7 @@ public class Job
         {
             Title = title,
             Description = description,
-            Duration = duration,
-            ScheduledDate = scheduledDate,
-            AssignedUserId = assignedUserId
+            Duration = duration
         };
     }
 }

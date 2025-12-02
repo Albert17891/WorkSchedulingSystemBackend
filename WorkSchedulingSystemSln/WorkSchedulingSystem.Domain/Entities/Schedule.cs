@@ -8,11 +8,11 @@ public class Schedule
     public Guid UserId { get; private set; }
     public DateTime Date { get; private set; }
     public ScheduleStatus Status { get; private set; }
-    public List<Job> Jobs { get; private set; }
+    private readonly List<Job> _jobs = new();
+    public IReadOnlyCollection<Job> Jobs => _jobs.AsReadOnly();
     private Schedule()
     {
-        Id = Guid.NewGuid();
-        Jobs = new List<Job>();
+        Id = Guid.NewGuid();    
     }
     public static Schedule Create(Guid userId, DateTime date)
     {
@@ -36,6 +36,6 @@ public class Schedule
 
     public void AddJob(Job job)
     {
-        Jobs.Add(job);
+        _jobs.Add(job);
     }
 }
