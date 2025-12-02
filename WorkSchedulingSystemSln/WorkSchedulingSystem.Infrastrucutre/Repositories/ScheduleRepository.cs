@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WorkSchedulingSystem.Domain.Entities;
+using WorkSchedulingSystem.Domain.Enums;
 using WorkSchedulingSystem.Domain.RepositoryContracts;
 using WorkSchedulingSystem.Infrastrucuture.DataContext;
 
@@ -18,9 +19,9 @@ public class ScheduleRepository : IScheduleRepository
         await _context.Schedules.AddAsync(schedule);
     }
 
-    public async Task DeleteScheduleAsync(Schedule schedule)
+    public async Task DeleteScheduleAsync(Guid scheduleId)
     {
-        var entity = await _context.Schedules.FindAsync(schedule.Id);
+        var entity = await _context.Schedules.FindAsync(scheduleId);
 
         if (entity == null)
         {
@@ -33,6 +34,14 @@ public class ScheduleRepository : IScheduleRepository
     public async Task<IEnumerable<Schedule>> GetAllSchedulesAsync()
     {
         return await _context.Schedules.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Schedule>> GetPendingSchedulesAsync()
+    {
+        return await _context.Schedules
+            .Where(s => s.Status == ScheduleStatus.Pending)
+            .Include(x => x.Jobs)
+            .ToListAsync();
     }
 
     public async Task<Schedule?> GetScheduleByIdAsync(Guid scheduleId)

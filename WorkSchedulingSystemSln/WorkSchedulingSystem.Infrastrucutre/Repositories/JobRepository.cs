@@ -39,14 +39,7 @@ public class JobRepository : IJobRepository
     public async Task<Job?> GetJobByIdAsync(Guid jobId)
     {
         return await _context.Jobs.FirstOrDefaultAsync(j => j.Id == jobId);
-    }
-
-    public async Task<IEnumerable<Job>> GetJobsByUserIdAsync(Guid userId)
-    {
-        return await _context.Jobs
-             .Where(j => j.AssignedUserId == userId)
-             .ToListAsync();
-    }
+    }    
 
     public async Task UpdateJobAsync(Job job)
     {
