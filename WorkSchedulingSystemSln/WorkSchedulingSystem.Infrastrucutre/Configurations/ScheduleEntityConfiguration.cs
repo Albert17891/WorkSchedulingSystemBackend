@@ -26,10 +26,11 @@ public class ScheduleEntityConfiguration : IEntityTypeConfiguration<Schedule>
        
         builder.HasMany(s => s.Jobs)
                .WithOne()
-               .HasForeignKey(j => j.AssignedUserId)   
-               .OnDelete(DeleteBehavior.Restrict);
+               .HasForeignKey(j => j.ScheduleId)   
+               .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Navigation(s => s.Jobs)
-               .UsePropertyAccessMode(PropertyAccessMode.Field);
+        builder.Metadata
+                .FindNavigation(nameof(Schedule.Jobs))!
+                .SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

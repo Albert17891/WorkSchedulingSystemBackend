@@ -22,11 +22,8 @@ public class JobEntityConfiguration : IEntityTypeConfiguration<Job>
 
         builder.Property(j => j.Duration)
             .IsRequired();
-
-        builder.Property(j => j.ScheduledDate)
-            .IsRequired();
-
-        builder.Property(j => j.AssignedUserId)
+       
+        builder.Property(j=> j.ScheduleId)
             .IsRequired();
     }
 }
