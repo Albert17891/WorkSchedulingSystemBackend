@@ -7,6 +7,5 @@ public record UserRegisterDto(
     string LastName,
     Gender Gender,
     string Email,
-    string Password,
-    string ConfirmPassword,
+    string Password,   
     DateTime BirthDate);
