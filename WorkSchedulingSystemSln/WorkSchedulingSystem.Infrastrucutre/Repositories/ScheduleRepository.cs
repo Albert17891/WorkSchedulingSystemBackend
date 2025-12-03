@@ -36,7 +36,7 @@ public class ScheduleRepository : IScheduleRepository
         return await _context.Schedules.ToListAsync();
     }
 
-    public async Task<IEnumerable<Schedule>> GetPendingSchedulesAsync()
+    public async Task<IEnumerable<Schedule?>> GetPendingSchedulesAsync()
     {
         return await _context.Schedules
             .Where(s => s.Status == ScheduleStatus.Pending)
