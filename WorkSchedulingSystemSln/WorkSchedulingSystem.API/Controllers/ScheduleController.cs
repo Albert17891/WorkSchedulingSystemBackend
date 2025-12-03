@@ -33,9 +33,9 @@ public class ScheduleController : ControllerBase
             : BadRequest(result);
     }
 
-    [HttpGet("GetSchedulesByUserId")]
+    [HttpGet("GetUserSchedules")]
     [Authorize(Roles = Roles.Worker)]
-    public async Task<IActionResult> GetSchedulesByUserId()
+    public async Task<IActionResult> GetUserSchedules()
     {
         var userId = GetCurrentUserId();
 
