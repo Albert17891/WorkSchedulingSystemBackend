@@ -80,6 +80,7 @@ public class ScheduleService : IScheduleService
         var scheduleDetailsDtos = schedules.Select(schedule => new ScheduleDetailsDto(
               ScheduleId: schedule.Id,
               Date: schedule.Date,
+              Status: schedule.Status,
               Jobs: schedule.Jobs?.Select(job => new JobDetailsDto(
                     JobId: job.Id,
                     Title: job.Title,
@@ -103,6 +104,7 @@ public class ScheduleService : IScheduleService
         var scheduleDetailsDtos = schedules.Select(schedule => new ScheduleDetailsDto(
               ScheduleId: schedule.Id,
               Date: schedule.Date,
+              Status: schedule.Status,
               Jobs: schedule.Jobs?.Select(job => new JobDetailsDto(
                     JobId: job.Id,
                     Title: job.Title,
@@ -126,6 +128,7 @@ public class ScheduleService : IScheduleService
         var scheduleDetailsDtos = schedules.Select(schedule => new ScheduleDetailsDto(
               ScheduleId: schedule.Id,
               Date: schedule.Date,
+              Status: schedule.Status,
               Jobs: schedule.Jobs?.Select(job => new JobDetailsDto(
                     JobId: job.Id,
                     Title: job.Title,
