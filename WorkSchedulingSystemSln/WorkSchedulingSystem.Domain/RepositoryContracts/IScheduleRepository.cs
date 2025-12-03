@@ -10,5 +10,5 @@ public interface IScheduleRepository
     Task<Schedule?> GetScheduleByIdAsync(Guid scheduleId);
     Task<IEnumerable<Schedule>> GetSchedulesByUserIdAsync(Guid userId);
     Task<IEnumerable<Schedule>> GetAllSchedulesAsync();
-    Task<IEnumerable<Schedule>> GetPendingSchedulesAsync();
+    Task<IEnumerable<Schedule?>> GetPendingSchedulesAsync();
 }

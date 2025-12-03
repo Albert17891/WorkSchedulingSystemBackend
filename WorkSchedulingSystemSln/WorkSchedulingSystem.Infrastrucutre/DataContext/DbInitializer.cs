@@ -28,14 +28,14 @@ public static class DbInitializer
                 email: adminEmail,
                 birthDate: DateTime.UtcNow.AddYears(-30)
                 );
-        }
 
-        var result = await userManager.CreateAsync(adminUser, "Admin@123");
+            var result = await userManager.CreateAsync(adminUser, "Admin@123");
 
-        if (result.Succeeded)
-        {
-            await userManager.AddToRoleAsync(adminUser, Roles.Admin);
-        }
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(adminUser, Roles.Admin);
+            }
+        }        
     }
 
     private static async Task SeedRole(RoleManager<IdentityRole> roleManager, string roleName)
