@@ -18,7 +18,7 @@ public class UserService : IUserService
         _authService = authService;
     }
 
-    public async Task<ApiResult<User>> CreateUserAsync(UserRegisterDto userRegister)
+    public async Task<ApiResult<UserResponseDto>> CreateUserAsync(UserRegisterDto userRegister)
     {
         var user = User.Create(
              userRegister.FirstName,
@@ -31,12 +31,15 @@ public class UserService : IUserService
 
         if (!result.Succeeded)
         {
-            return ApiResult<User>.Failure("User creation failed");
+            return ApiResult<UserResponseDto>.Failure("User creation failed");
         }
 
         await _userManager.AddToRoleAsync(user, Roles.Worker);
 
-        return ApiResult<User>.Success(user);
+        var userResponse=new UserResponseDto(user.FirstName, user.LastName,user.Email);
+        
+
+        return ApiResult<UserResponseDto>.Success(userResponse);
     }
 
     public async Task<string> LoginAsync(LoginDto loginDto)
