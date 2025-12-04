@@ -65,6 +65,6 @@ public class ScheduleRepository : IScheduleRepository
             throw new InvalidOperationException("Schedule not found.");
         }
 
-        _context.Schedules.Remove(entity);
+        _context.Schedules.Update(entity);
     }
 }
