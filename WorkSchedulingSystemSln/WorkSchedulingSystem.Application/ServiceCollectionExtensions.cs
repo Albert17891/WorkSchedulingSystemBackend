@@ -7,6 +7,8 @@ using System.Text;
 using WorkSchedulingSystem.Application.Common.Settings;
 using WorkSchedulingSystem.Application.ServiceContracts;
 using WorkSchedulingSystem.Application.Services;
+using WorkSchedulingSystem.Application.Validations.ScheduleModelValidation;
+using FluentValidation;
 
 namespace WorkSchedulingSystem.Application;
 
@@ -19,6 +21,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IScheduleService, ScheduleService>();
 
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+
+        services.AddValidatorsFromAssemblyContaining<CreateScheduleValidation>();
 
         services.AddAuthentication(options =>
         {
