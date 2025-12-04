@@ -24,10 +24,11 @@ public class AuthService : IAuthService
 
         var claims = new List<Claim>
          {
-           new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-           new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-           new Claim(ClaimTypes.NameIdentifier, user.Id),
-           new Claim(ClaimTypes.Name, user.UserName)
+             new Claim(JwtRegisteredClaimNames.Sub, user.Id),  
+             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+             new Claim(JwtRegisteredClaimNames.Email, user.Email),
+             new Claim(ClaimTypes.NameIdentifier, user.Id),
+             new Claim(ClaimTypes.Name, user.UserName ?? user.Email)
          };
 
         foreach (var role in roles)
@@ -35,7 +36,7 @@ public class AuthService : IAuthService
             claims.Add(new Claim(ClaimTypes.Role, role));
         }
 
-        
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

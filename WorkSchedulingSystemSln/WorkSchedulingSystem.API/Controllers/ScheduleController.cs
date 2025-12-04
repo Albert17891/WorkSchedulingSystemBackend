@@ -107,8 +107,7 @@ public class ScheduleController : ControllerBase
 
     private Guid? GetCurrentUserId()
     {
-        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
         return Guid.TryParse(userIdClaim, out var id) ? id : null;
     }
