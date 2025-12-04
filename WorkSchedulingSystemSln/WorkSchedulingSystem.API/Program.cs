@@ -1,3 +1,7 @@
+using Microsoft.Extensions.Configuration;
+using Serilog;
+using System.Text.Json.Serialization;
+using WorkSchedulingSystem.API.Middlewares;
 using WorkSchedulingSystem.Application;
 using WorkSchedulingSystem.Infrastructure.DataContext;
 using WorkSchedulingSystem.Infrastrucuture;
@@ -6,14 +10,29 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var configuracion = builder.Configuration;
+var configuration = builder.Configuration;
 
-builder.Services.AddControllers();
+builder.Host.UseSerilog();
+
+var logConfiguration = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json")
+        .Build();
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .CreateLogger();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddApplicationServices(configuracion);
-builder.Services.AddInfrastructureServices(configuracion);
+builder.Services.AddApplicationServices(configuration);
+builder.Services.AddInfrastructureServices(configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -43,6 +62,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
